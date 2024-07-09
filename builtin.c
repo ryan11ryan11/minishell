@@ -31,18 +31,22 @@ int main(int argc, char *argv[])
 {
 	(void) argc;
 
-	int	i;
+	// int	i;
 
-	i = 0;
-	while (argv[i] != NULL)
-	{
-		printf("argv[%d] : %s\n", i, argv[i]);
-		i ++ ;
-	}
+	// i = 0;
+	// while (argv[i] != NULL)
+	// {
+	// 	printf("argv[%d] : %s\n", i, argv[i]);
+	// 	i ++ ;
+	// }
 	if (ft_strcmp(argv[1], "echo") == 0)
 		ft_echo(argv);
 	if (ft_strcmp(argv[1], "cd") == 0)
 		ft_cd(argv);
-	else
-		printf("NO\n");
+	if (ft_strcmp(argv[1], "pwd") == 0)
+		ft_pwd();
+	if (ft_strcmp(argv[1], "export") == 0)
+		ft_export();
+	if (ft_strcmp(argv[1], "env") == 0)
+		ft_env();
 }

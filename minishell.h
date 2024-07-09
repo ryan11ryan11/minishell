@@ -26,5 +26,8 @@ void	ft_putstr_fd(char *s, int fd);
 int		ft_strcmp(const char *s1, const char *s2);
 void	ft_echo(char *argv[]);
 void	ft_cd(char *argv[]);
+int 	ft_pwd(void);
+void	ft_export(void);
+void	ft_env(void);
 
 #endif

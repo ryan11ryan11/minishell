@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-COMMON = builtin ft_echo ft_cd
+COMMON = builtin ft_echo ft_cd ft_pwd ft_export ft_env
 NAME = test
 
 #COMOBJ = $(addprefix $(COMDIR)/, $(addsuffix .o, $(COMMON)))
