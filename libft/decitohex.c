@@ -66,14 +66,12 @@ int	decitohex(unsigned int num, int bigorsmall)
 {
 	int		digit;
 	char	*result_arr;
-	int		i;
 
 	digit = decitohex_how_big(num);
 	if (num == 0)
 		return (decitohex_result("0", 1));
 	result_arr = ft_calloc(digit + 1, sizeof(char));
 	processor(num, result_arr, bigorsmall, digit);
-	i = decitohex_result(result_arr, 1);
 	free (result_arr);
 	return (digit);
 }

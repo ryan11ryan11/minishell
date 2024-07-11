@@ -22,12 +22,37 @@
 # include <sys/types.h>
 # include <dirent.h>
 
-void	ft_putstr_fd(char *s, int fd);
-int		ft_strcmp(const char *s1, const char *s2);
-void	ft_echo(char *argv[]);
-void	ft_cd(char *argv[]);
-int 	ft_pwd(void);
-void	ft_export(void);
-void	ft_env(void);
+# define SUCCESS 1
+# define FAIL 0
+# define STDERR 2
+# define STDOUT 1
+
+typedef struct s_envlist
+{
+	char				*value;
+	struct s_envlist	*next;
+}	t_envlist;
+
+typedef struct s_data
+{
+	struct s_envlist	*envlist;
+}	t_data;
+
+
+void		ft_putstr_fd(char *s, int fd);
+int			ft_strcmp(const char *s1, const char *s2);
+void		ft_echo(char *argv[]);
+void		ft_cd(char *argv[]);
+int 		ft_pwd(void);
+int			ft_export(char *argv[], t_envlist *envlist);
+void		ft_env(void);
+t_envlist	*ft_lstnew(void *content);
+void		envlist_addback(t_envlist **lst, t_envlist *new);
+t_envlist	*envlist_new(void *content);
+t_envlist	*ft_lstlast(t_envlist *lst);
+t_envlist	*ft_envlast(t_envlist *lst);
+int			ft_strcmp(const char *s1, const char *s2);
+int			ft_isalnum(int c);
+void		ft_putstr_fd(char *s, int fd);
 
 #endif

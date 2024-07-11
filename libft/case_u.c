@@ -32,8 +32,6 @@ unsigned int	case_u_ss(unsigned int n)
 	unsigned int	i;
 
 	i = 0;
-	if (n < 0)
-		n = n * -1;
 	while (9 < n)
 	{
 		n = n / 10;
@@ -61,20 +59,15 @@ char	*case_u_maker(unsigned int n, char *arr, unsigned int len)
 unsigned int	case_u(unsigned int n)
 {
 	unsigned int	len;
-	unsigned int	temp_n;
 	char			*arr;
 	unsigned int	result_num;
 
-	if (n > 4294967295)
-		return (0);
 	len = case_u_ss(n);
 	arr = (char *)malloc(sizeof(char) * (len + 1));
 	if (!arr)
 		return (0);
 	arr[len] = '\0';
-	temp_n = n;
-	if (n >= 0)
-		case_u_maker(n, arr, len);
+	case_u_maker(n, arr, len);
 	result_num = case_u_result(arr, 1);
 	free (arr);
 	return (result_num);

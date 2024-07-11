@@ -17,9 +17,7 @@ void	*ft_memset(void *s, int c, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*result;
-	size_t	i;
 
-	i = 0;
 	if (nmemb == 0 || size == 0)
 	{
 		nmemb = 1;
