@@ -19,7 +19,8 @@ int	ft_pwd(void)
 
 	if (getcwd(path, 4096) != NULL)
 	{
-		printf("%s\n",path);
+		ft_putstr_fd (path, STDOUT);
+		write (1, "\n", 1);
 		return (1);
 	}
 	return (0);
