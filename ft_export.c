@@ -38,7 +38,7 @@ int	is_duplicate(char *msg, t_envlist *envlist)
 	tmp = envlist;
 	while (tmp != NULL)
 	{
-		if (ft_strcmp(envlist->value, msg) == 0)
+		if (ft_strcmp2(envlist->value, msg) == 0)
 		{
 			envlist->value = msg;
 			return (SUCCESS);

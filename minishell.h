@@ -51,8 +51,15 @@ void		envlist_addback(t_envlist **lst, t_envlist *new);
 t_envlist	*envlist_new(void *content);
 t_envlist	*ft_lstlast(t_envlist *lst);
 t_envlist	*ft_envlast(t_envlist *lst);
-int			ft_strcmp(const char *s1, const char *s2);
+int			ft_strcmp2(const char *s1, const char *s2);
 int			ft_isalnum(int c);
 void		ft_putstr_fd(char *s, int fd);
+int			ft_unset(t_data *data, char *argv[]);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t		ft_strlen(const char *s);
+
+
+
 
 #endif

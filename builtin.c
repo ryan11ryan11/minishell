@@ -13,7 +13,7 @@
 
 #include "minishell.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp2(const char *s1, const char *s2)
 {
 	size_t	i;
 
@@ -24,7 +24,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i ++ ;
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
 }
 
 int		env_size_checker(char *env[])
@@ -110,17 +110,17 @@ int main(int argc, char *argv[], char *env[])
 	t_data	data;
 
 	envmaker(&data, env);
-	if (ft_strcmp(argv[1], "echo") == 0)
+	if (ft_strcmp2(argv[1], "echo") == 0)
 		ft_echo(argv);
-	if (ft_strcmp(argv[1], "cd") == 0)
+	if (ft_strcmp2(argv[1], "cd") == 0)
 		ft_cd(argv);
-	if (ft_strcmp(argv[1], "pwd") == 0)
+	if (ft_strcmp2(argv[1], "pwd") == 0)
 		ft_pwd();
-	if (ft_strcmp(argv[1], "export") == 0)
+	if (ft_strcmp2(argv[1], "export") == 0)
 		ft_export(argv, data.envlist);
-	if (ft_strcmp(argv[1], "env") == 0)
+	if (ft_strcmp2(argv[1], "env") == 0)
 		ft_env();
-	if (ft_strcmp(argv[1], "unset") == 0)
-		ft_unset();
+	if (ft_strcmp2(argv[1], "unset") == 0)
+		ft_unset(&data, argv);
 	return (0);
 }

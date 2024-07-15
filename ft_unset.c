@@ -1,69 +1,100 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junhhong <junhhong@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/15 10:37:12 by junhhong          #+#    #+#             */
+/*   Updated: 2024/07/15 13:45:01 by junhhong         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
 int value_finder(t_envlist *envlist, char *value)
 {
-    t_envlist *tmp;
+	t_envlist *tmp;
+	int	len;
 	int	i;
 
 	i = 0;
-    tmp = envlist;
-    while (envlist != NULL)
-    {
-		if (ft_strcmp(envlist->value, value))
+	tmp = envlist;
+	len = ft_strlen(value);
+	while (tmp != NULL)
+	{
+		if (ft_strncmp(tmp->value, value, len) == 0 \
+		&& tmp->value[len] == '=')
 			return (i);
 		tmp = tmp->next;
 		i ++ ;
-    }
-	return (-1);
+	}
+	printf("done\n");
+	return (FAIL);
 }
 
 t_envlist	*node_move(t_envlist *envlist, int i)
 {
-	while (i > 0)
+	t_envlist	*tmp;
+
+	tmp = envlist;
+	while (i > 0 && tmp != NULL)
 	{
-		envlist = envlist->next;
+		tmp = tmp->next;
 		i -- ;
 	}
+	return (tmp);
 }
 
-int	node_remove(t_envlist *t_target, int i)
+int	node_remove(t_data *data, int i)
 {
-	int	tmp;
 	t_envlist *prv_target;
-	t_envlist *tmplist;
+	t_envlist *target;
 
-	tmp = i - 1;
-	if (t_target->next == NULL)
+	target = node_move(data->envlist, i);
+	prv_target = node_move(data->envlist, i - 1);
+	if (target == data->envlist)
 	{
-		prv_target = node_move(t_target, i - 1);
-		target->next = NULL;
-		free (envlist);
+		data->envlist = data->envlist->next;
+		free (target);
 		return (SUCCESS);
 	}
-	if (tmp == 0)
+	if (target->next == NULL)
 	{
-
+		prv_target->next = NULL;
+		free (target);
+		return (SUCCESS);
 	}
-	while (tmp > 0)
+	else
 	{
-		envlist = envlist->next;
-		tmp -- ;
+		prv_target->next = target->next;
+		free(target);
+		return (SUCCESS);
 	}
-	target = node_move(envlist, i - 1);
-	tmplist = envlist->next->next;
-	free (envlist->next);
-	envlist->next = tmplist;
 }
 
-int ft_unset(t_envlist *envlist, char *value)
+int ft_unset(t_data *data, char *argv[])
 {
 	int	position;
 	t_envlist *target_env;
+	t_envlist *tmp;
 
-	position = value_finder(envlist, value);
-	if (position == -1);
+	tmp = data->envlist;
+	if (!argv[2])
+	{
+		ft_putstr_fd ("unset: not enough arguments\n", STDERR);
 		return (FAIL);
-	target_env = node_move(target_env, position);
-
+	}
+	position = value_finder(data->envlist, argv[2]);
+	if (position == FAIL) // does not exist
+		return (FAIL);
+	target_env = node_move(data->envlist, position);
+	node_remove(data, position);
+	tmp = data->envlist;
+	// while (tmp != NULL)
+	// {
+	// 	printf("%s\n",tmp->value);
+	// 	tmp = tmp->next;
+	// }
+	return (SUCCESS);
 }
