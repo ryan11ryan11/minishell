@@ -119,7 +119,7 @@ int main(int argc, char *argv[], char *env[])
 	if (ft_strcmp2(argv[1], "export") == 0)
 		ft_export(argv, data.envlist);
 	if (ft_strcmp2(argv[1], "env") == 0)
-		ft_env();
+		ft_env(&data);
 	if (ft_strcmp2(argv[1], "unset") == 0)
 		ft_unset(&data, argv);
 	return (0);
