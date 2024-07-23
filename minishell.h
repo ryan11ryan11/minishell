@@ -21,6 +21,8 @@
 # include <string.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define SUCCESS 1
 # define FAIL 0
@@ -58,6 +60,9 @@ int			ft_unset(t_data *data, char *argv[]);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t		ft_strlen(const char *s);
+int			builtin(char *argv[], t_data data);
+int			envmaker(t_data *data, char *env[]);
+
 
 
 #endif

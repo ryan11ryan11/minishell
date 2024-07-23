@@ -45,11 +45,7 @@ int	is_duplicate(char *msg, t_envlist *envlist)
 		}
 		tmp = tmp->next;
 	}
-	return (FAIL);
-}
-
-int	is_special(char *msg)
-{
+	return (FAIL); 
 	int	i;
 
 	i = 0;
@@ -75,6 +71,22 @@ void	print_all(t_envlist *envlist)
 		envlist = envlist->next;
 	}
 
+}
+
+int	is_special(char *msg)
+{
+	int	i;
+
+	i = 0;
+	if ('0' <= msg[0] || msg[0] <= '9')
+		return (FAIL);
+	while (msg[i] != '\0')
+	{
+		if (!ft_isalnum(msg[i]) && msg[i] != '_' && msg[i] != '=')
+			return (FAIL);
+		i ++ ;
+	}
+	return (SUCCESS);
 }
 
 int	validity_check(char *msg, t_envlist *envlist)

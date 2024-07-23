@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-COMMON = builtin ft_echo ft_cd ft_pwd ft_export ft_env ft_unset
+COMMON = minishell builtin ft_echo ft_cd ft_pwd ft_export ft_env ft_unset
 NAME = test
 LIBDIR = ./libft
 
@@ -16,7 +16,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJ)
 	$(MAKE) -C ./libft
-	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) ./libft/libft.a -lreadline -o $(NAME)
 
 
 # Make lib

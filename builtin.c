@@ -51,13 +51,15 @@ t_envlist	*envlist_new(void *content)
 
 t_envlist	*ft_envlast(t_envlist *lst)
 {
-	if (!lst)
-		return (NULL);
-	while (lst -> next != NULL)
-		lst = lst -> next;
-	return (lst);
-}
+	t_envlist	*temp;
 
+	temp = lst;
+	if (!temp)
+		return (NULL);
+	while (temp->next != NULL)
+		temp = temp->next;
+	return (temp);
+}
 
 void	envlist_addback(t_envlist **lst, t_envlist *new)
 {
@@ -72,9 +74,8 @@ void	envlist_addback(t_envlist **lst, t_envlist *new)
 		return ;
 	}
 	temp = ft_envlast(*lst);
-	(temp)->next = new;
+	temp->next = new;
 }
-
 
 int	envmaker(t_data *data, char *env[])
 {
@@ -91,25 +92,16 @@ int	envmaker(t_data *data, char *env[])
 	while (i < env_size)
 	{
 		last_block = (t_envlist *)malloc(sizeof(t_envlist));
-		envlist_addback(&data->envlist, last_block);
 		last_block->value = env[i];
+		last_block->next = NULL;
+		envlist_addback(&data->envlist, last_block);
 		i ++ ;
 	}
-	// while (data->envlist != NULL)
-	// {
-	// 	printf("%s\n",data->envlist->value);
-	// 	data->envlist = data->envlist->next;
-	// }
 	return (SUCCESS);
 }
 
-
-int main(int argc, char *argv[], char *env[])
+int	builtin(char *argv[], t_data data)
 {
-	(void) argc;
-	t_data	data;
-
-	envmaker(&data, env);
 	if (ft_strcmp2(argv[1], "echo") == 0)
 		ft_echo(argv);
 	if (ft_strcmp2(argv[1], "cd") == 0)
