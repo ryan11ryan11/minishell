@@ -1,7 +1,5 @@
-![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=capsule&fontSize=90)
+![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=300&section=header&text=MINISHELL&fontSize=70)
 
-
-Minishell
 Minishell is a simplified shell—reminiscent of Bash—implemented as part of the 42 curriculum. This project provided me with a deep dive into Unix systems programming, covering process management, inter-process communication (IPC) via pipes, file descriptor manipulation, and robust signal handling.
 
 Key Features & Implementation
